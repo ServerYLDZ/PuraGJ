@@ -1,48 +1,53 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     [SerializeField] float m_speed = 4.0f;
     [SerializeField] float m_jumpForce = 7.5f;
-    
+    public float healt=100;
+    public float m_healt
+    {
+        get
+        {
+            return healt;
+        }
+        set
+        {
+            m_slider.DOValue(value/100, .2f);
+            healt = value;
+        }
+    }
  
     private Animator m_animator;
     private Rigidbody2D m_body2d;
     private Ground_Sensor m_groundSensor;
+    [SerializeField] Slider m_slider;
+
     private bool m_grounded = false;
     private float m_delayToIdle = 0.0f;
     private float inputX;
     
-
-
-    // Use this for initialization
     void Start()
     {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Ground_Sensor>();
     }
-
-  
-    public void MoveUp()
-    {
-        if (m_grounded)
-        {
-            m_animator.SetTrigger("Jump");
-            m_grounded = false;
-            m_animator.SetBool("Grounded", m_grounded);
-            m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
-            m_groundSensor.Disable(0.2f);
-        }
-    }
-   
-    // Update is called once per frame
     void Update()
     {
-          inputX = Input.GetAxis("Horizontal");
-         
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ChangeHealt(-20);
+        } 
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            ChangeHealt(20);
+        }
+        // Grounded and jump thing
         if (!m_grounded && m_groundSensor.State())
         {
             m_grounded = true;
@@ -54,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // -- Handle input and movement --
-        //inputX = Input.GetAxis("Horizontal");
+        inputX = Input.GetAxis("Horizontal");
 
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
@@ -72,9 +77,13 @@ public class PlayerMovement : MonoBehaviour
         // -- Handle Animations --
 
         //Death
-      
+        if (Input.GetKeyDown("e"))
+        {
+            m_animator.SetTrigger("Death");
+        }
+
         //Jump
-        if (Input.GetKeyDown("space") && m_grounded )
+        if (Input.GetKeyDown(KeyCode.Space) && m_grounded)
         {
             m_animator.SetTrigger("Jump");
             m_grounded = false;
@@ -84,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Run
-        else if (Mathf.Abs(inputX) > Mathf.Epsilon)
+        if (Mathf.Abs(inputX) > Mathf.Epsilon)
         {
             // Reset timer
             m_delayToIdle = 0.05f;
@@ -100,17 +109,33 @@ public class PlayerMovement : MonoBehaviour
                 m_animator.SetInteger("AnimState", 0);
         }
     }
-
     IEnumerator ResetGroundedState(float delay)
     {
         yield return new WaitForSeconds(delay);
         m_grounded = false;
         m_animator.SetBool("Grounded", m_grounded);
     }
-
     void FixedUpdate()
     {
         //Move
         m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
+    }
+
+    public void ChangeHealt(int x)
+    {
+        if(m_healt+x >= 100)
+        {
+            m_healt = 100;
+        }
+        else if( m_healt+x <= 0) 
+        {
+            m_healt = 0;
+            // ölme fonskiyonu
+        }
+        else
+        {
+            m_healt += x;
+        }
+
     }
 }
