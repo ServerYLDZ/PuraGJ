@@ -6,6 +6,7 @@ public class GameManager : Singleton<GameManager>
 {
    private int gold;
 
+    public GameObject player;
     public int Gold
  {
      get { return gold; }

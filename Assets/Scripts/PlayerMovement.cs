@@ -99,14 +99,7 @@ public class PlayerMovement : MonoBehaviour
             pressTime = Time.time;
         }
 
-        if (Input.GetKey(KeyCode.Space) && canFly && Time.time - pressTime <= 1)
-        {
-            Fly();
-        }
-        else
-        {
-            canFly = false;
-        }
+        
         //Run
         if (Mathf.Abs(inputX) > Mathf.Epsilon)
         {
@@ -130,6 +123,14 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
+        if (Input.GetKey(KeyCode.Space) && canFly && Time.time - pressTime <= 1)
+        {
+            Fly();
+        }
+        else
+        {
+            canFly = false;
+        }
     }
 
     public void Fly()
