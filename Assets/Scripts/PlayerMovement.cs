@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float m_speed = 4.0f;
     [SerializeField] float m_jumpForce = 7.5f;
+    public float pressTime=0;
+    private bool canFly=false;
     public float healt=100;
     public float m_healt
     {
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private bool m_grounded = false;
     private float m_delayToIdle = 0.0f;
     private float inputX;
+    public float flySpeed=10;
     
     void Start()
     {
@@ -85,13 +88,18 @@ public class PlayerMovement : MonoBehaviour
         //Jump
         if (Input.GetKeyDown(KeyCode.Space) && m_grounded)
         {
+            
             m_animator.SetTrigger("Jump");
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
             m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
             m_groundSensor.Disable(0.2f);
         }
-
+        //Fly
+       if(Input.GetKeyDown(KeyCode.Z) && m_grounded){
+                canFly=true;
+                pressTime=Time.time;
+        }
         //Run
         if (Mathf.Abs(inputX) > Mathf.Epsilon)
         {
@@ -117,8 +125,24 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        //Move
+       
         m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
+  
+        
+    if(Input.GetKey(KeyCode.Z) && canFly && Time.time-pressTime<=1){
+        Fly();
+        
+        
+        }
+        else{
+            canFly=false;
+        }
+       
+    }
+
+    public void  Fly () {
+        
+        m_body2d.AddForce(Vector2.up*flySpeed);
     }
 
     public void ChangeHealt(int x)
