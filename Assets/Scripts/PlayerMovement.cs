@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private float m_delayToIdle = 0.0f;
     private float inputX;
     private float flySpeed = 16;
+    public bool grapped;
 
 
     void Start()
@@ -43,14 +44,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ChangeHealt(-20);
-        } 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            ChangeHealt(20);
-        }
         if (!m_grounded && m_groundSensor.State())
         {
             m_grounded = true;
@@ -122,7 +115,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
+        if (!grapped)
+        {
+            m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
+        }
         if (Input.GetKey(KeyCode.Space) && canFly && Time.time - pressTime <= 1)
         {
             Fly();
