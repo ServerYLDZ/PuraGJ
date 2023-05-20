@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public float speed=5;
     bool canAttack=true;
     public float attackTime=2;
+    private bool isDead=false;
     void Start()
     {
         
@@ -22,13 +23,16 @@ public class Enemy : MonoBehaviour
         distace=Vector2.Distance(transform.position,GameManager.instance.player.transform.position);
         Vector2 direction =GameManager.instance.player.transform.position-transform.position;
         direction.Normalize();
+        if(direction.x>0)
+        GetComponent<SpriteRenderer>().flipX=true;
+        else if(direction.x<0)
+          GetComponent<SpriteRenderer>().flipX=false;
         if(distace<attackDis){
-            Debug.Log("damage");
-            if(canAttack){
+            if(canAttack&&!isDead){
                 Attack();
             }
         }
-        else if(distace<folowDis){
+        else if(distace<folowDis && !isDead){
              Vector2 newPos=GameManager.instance.player.transform.position;
             newPos.y=transform.position.y;
             transform.position=Vector2.MoveTowards(transform.position,newPos,speed*Time.deltaTime);
@@ -44,4 +48,12 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(attackTime);
         canAttack=true;
     }
+
+    public void GetHit () {
+        
+            // animasyon girer
+            isDead=true;
+        
+    }
+   
 }

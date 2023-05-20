@@ -22,11 +22,17 @@ public class BirdEnemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player"))
-           GameManager.instance.player.GetComponent<PlayerMovement>().ChangeHealt(-damage);   
+           GameManager.instance.player.GetComponent<PlayerMovement>().ChangeHealt(-damage);  
+         else if(other.CompareTag("bullet")){
+            PoolManager.instance.Despawn(gameObject);
+            other.gameObject.SetActive(false);
+         }   
     }
     
     private void OnBecameInvisible() {
-        gameObject.SetActive(false);
+        if(gameObject.activeInHierarchy)
+        PoolManager.instance.Despawn(gameObject);
     }
 
+   
 }

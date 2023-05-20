@@ -18,7 +18,9 @@ public bool canSpawn=true;
         if(canSpawn){
            float x= Random.Range(transform.position.x-spawnRange,+transform.position.x+spawnRange);
             float y= Random.Range(transform.position.y+5,transform.position.y+10);
-            GameObject obj=Instantiate(birdPrefab,new Vector3(x,y,0),Quaternion.identity);
+            GameObject obj=PoolManager.instance.Spawn("Bird",true);
+            obj.transform.position=new Vector3(x,y,0);
+           // GameObject obj=Instantiate(birdPrefab,new Vector3(x,y,0),Quaternion.identity);
             canSpawn=false;
             StartCoroutine(ResetSpawn());
         }

@@ -20,7 +20,9 @@ public bool canSpawn=true;
     {
          if(canSpawn){
             int rand=Random.Range(0,points.Length);
-            GameObject obj=Instantiate(rainPrefab,points[rand].position,Quaternion.identity);
+             GameObject obj=PoolManager.instance.Spawn("Rain",true);
+             obj.transform.position=points[rand].position;
+           // GameObject obj=Instantiate(rainPrefab,points[rand].position,Quaternion.identity);
             canSpawn=false;
             StartCoroutine(ResetSpawn());
         }

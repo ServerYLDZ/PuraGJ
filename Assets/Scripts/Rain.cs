@@ -19,6 +19,6 @@ public class Rain : MonoBehaviour
      private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player"))
            GameManager.instance.player.GetComponent<PlayerMovement>().ChangeHealt(-damage);   
-           gameObject.SetActive(false);
+          PoolManager.instance.Despawn(gameObject);
     }
 }
