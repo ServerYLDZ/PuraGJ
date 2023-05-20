@@ -6,7 +6,6 @@ using DG.Tweening;
 public class PlayerMovement : MonoBehaviour
 {
 
-
     [SerializeField] float m_speed = 4.0f;
     [SerializeField] float m_jumpForce = 7.5f;
     private float pressTime = 0;
@@ -141,11 +140,6 @@ public class PlayerMovement : MonoBehaviour
         {
             canFly = false;
         }
-        if (Input.GetKey(KeyCode.K) )
-        {
-            GetComponent<Gun>().Attack();
-        }
-
     }
 
     public void Fly()
@@ -169,6 +163,4 @@ public class PlayerMovement : MonoBehaviour
             m_healt += x;
         }
     }
-
-    
 }
