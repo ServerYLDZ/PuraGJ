@@ -107,8 +107,15 @@ public class PoolManager : Singleton<PoolManager>
         }
         return null;
     }
-    public void Despawn(GameObject obj)
+    public void Despawn(GameObject obj, float duration = 0)
     {
+        StartCoroutine(DespawnCoroutine(obj, duration));
+    }
+
+    private IEnumerator DespawnCoroutine(GameObject obj, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
         for (int i = 0; i < objectPrefabs.Count; i++)
         {
             if (objectPrefabs[i].name == obj.name)
@@ -123,8 +130,9 @@ public class PoolManager : Singleton<PoolManager>
                     obj.transform.parent = containerObject.transform;
                 }
                 pooledObjects[i].Add(obj);
-                return;
+                break;
             }
         }
     }
+
 }

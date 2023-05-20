@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class PieceGun : MonoBehaviour
 {
+    [SerializeField] GameObject arm;
     [Header("Piece")]
-    [SerializeField] GameObject piecePrefab;
+    [SerializeField] GameObject[] piecePrefab;
     [SerializeField] float pieceSpeed = 10f;
     [SerializeField] float fireRate = 0.2f;
     [SerializeField] float nextFireTime = 0f;
@@ -23,6 +24,11 @@ public class PieceGun : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             FireBullet();
+            arm.SetActive(true);
+        }
+        else
+        {
+            arm.SetActive(false);
         }
 
         if (!transform.root.GetComponent<PlayerMovement>().grapped)
@@ -41,10 +47,10 @@ public class PieceGun : MonoBehaviour
         {
             nextFireTime = Time.time + fireRate;
 
-            GameObject bullet = Instantiate(piecePrefab, firePoint.position, firePoint.rotation);
+            GameObject bullet = PoolManager.instance.Spawn(piecePrefab[Random.Range(0,piecePrefab.Length)].name, firePoint.position, firePoint.rotation,true);
             Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
             bulletRigidbody.velocity = firePoint.right * pieceSpeed;
-            Destroy(bullet, 1f);
+            PoolManager.instance.Despawn(bullet,1);
         }
     }
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)

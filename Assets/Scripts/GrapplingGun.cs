@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GrapplingGun : MonoBehaviour
 {
+    [SerializeField] GameObject arm;
     [Header("Scripts:")]
     public GrappleRope grappleRope;
     [Header("Layer Settings:")]
@@ -47,6 +48,7 @@ public class GrapplingGun : MonoBehaviour
     Vector2 Mouse_FirePoint_DistanceVector;
 
     public Rigidbody2D playerRigidbody;
+    GameObject hookTop;
 
     private void Start()
     {
@@ -57,6 +59,14 @@ public class GrapplingGun : MonoBehaviour
 
     private void Update()
     {
+        if (transform.root.GetComponent<PlayerMovement>().grapped)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+        }
         Mouse_FirePoint_DistanceVector = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
         SetGrappleColor();
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -89,6 +99,8 @@ public class GrapplingGun : MonoBehaviour
             m_springJoint2D.enabled = false;
             playerRigidbody.gravityScale = 1;
             transform.parent.transform.parent.GetComponent<PlayerMovement>().grapped = false;
+            PoolManager.instance.Despawn(hookTop);
+            arm.SetActive(false);
         }
         else
         {
@@ -122,6 +134,11 @@ public class GrapplingGun : MonoBehaviour
                 DistanceVector = grapplePoint - (Vector2)gunPivot.position;
                 grappleRope.enabled = true;
                 transform.parent.transform.parent.GetComponent<PlayerMovement>().grapped = true;
+
+                arm.SetActive(true);
+                hookTop = PoolManager.instance.Spawn("HookTop", grapplePoint, Quaternion.identity, true);
+                if(hookTop.transform.position.y - transform.root.position.y < 0) { hookTop.GetComponent<SpriteRenderer>().flipY = true; }
+                else { hookTop.GetComponent<SpriteRenderer>().flipY = false; }
             }
         }
     }

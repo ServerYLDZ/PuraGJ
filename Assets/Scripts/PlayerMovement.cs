@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private float inputX;
     private float flySpeed = 16;
     public bool grapped;
-
+    public bool flyable;
 
     void Start()
     {
@@ -83,13 +83,8 @@ public class PlayerMovement : MonoBehaviour
        
         // -- Handle Animations --
 
-        //Death
-        if (Input.GetKeyDown("e"))
-        {
-            m_animator.SetTrigger("Death");
-        }
         //Jump
-        if (Input.GetKeyDown(KeyCode.W) && m_grounded)
+        if (Input.GetKeyDown(KeyCode.Space) && m_grounded)
         {
             m_animator.SetTrigger("Jump");
             m_grounded = false;
@@ -98,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
             m_groundSensor.Disable(0.2f);
         }
         //Fly Start
-        if (Input.GetKeyDown(KeyCode.Space) && m_grounded)
+        if (Input.GetKeyDown(KeyCode.W) && m_grounded && flyable)
         {
             canFly = true;
             pressTime = Time.time;
