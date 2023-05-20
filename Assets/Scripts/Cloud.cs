@@ -11,7 +11,7 @@ public class Cloud : MonoBehaviour
      public Transform target;
 public bool canSpawn=true;
 public bool canMove=true;
-
+public bool isBossScene=false;
 public bool canRain=true;
 
     void Start()
@@ -23,13 +23,21 @@ public bool canRain=true;
     // Update is called once per frame
     void Update()
     {
-         if(canSpawn && canRain){
-            int rand=Random.Range(0,points.Length);
+         if(canSpawn ){
+            if( canRain){
+                int rand=Random.Range(0,points.Length);
              GameObject obj=PoolManager.instance.Spawn("Rain",true);
              obj.transform.position=points[rand].position;
+             if(isBossScene){
+                obj.GetComponent<Rain>().boosFight=true;   
+                PoolManager.instance.Despawn(obj,2);
+             }
+            
            // GameObject obj=Instantiate(rainPrefab,points[rand].position,Quaternion.identity);
             canSpawn=false;
             StartCoroutine(ResetSpawn());
+            }
+            
         }
         
     }

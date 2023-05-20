@@ -10,6 +10,7 @@ public class Boss : MonoBehaviour
   public GameObject [] clouds;
   public Transform [] spawnPointVelet;
   public float veletSpawnTime=3;
+    public float rainTime=3;
 
   
   int veletCont=0;
@@ -49,31 +50,42 @@ private void Start() {
         }
     }
 IEnumerator CloudWorkCnahnge(){
-       
  
 
-     yield return new WaitForSeconds(veletSpawnTime);
-
-     activeCloudIndex=Random.Range(0,clouds.Length);
-      activeCloudIndex1=Random.Range(0,clouds.Length);
-      while(activeCloudIndex==activeCloudIndex1)
-        activeCloudIndex1=Random.Range(0,clouds.Length);
         clouds[activeCloudIndex].GetComponent<Cloud>().canRain=true;
         clouds[activeCloudIndex1].GetComponent<Cloud>().canRain=true;
+        
+        clouds[activeCloudIndex].GetComponent<Cloud>().canSpawn=true;
+        clouds[activeCloudIndex1].GetComponent<Cloud>().canSpawn=true;
+     yield return new WaitForSeconds(rainTime);
+
+     
+             
+    foreach(var obj in clouds) {
+              
+                obj.GetComponent<Cloud>().canRain=false;
+                obj.SetActive(false);
+            }
 
       
       
      StartCoroutine(waitCloud());
 }
 IEnumerator waitCloud(){
-    yield return new WaitForSeconds(2);
-    foreach(var obj in clouds) {
-              
-                obj.GetComponent<Cloud>().canRain=false;
+     activeCloudIndex=Random.Range(0,clouds.Length);
+      activeCloudIndex1=Random.Range(0,clouds.Length);
+      while(activeCloudIndex==activeCloudIndex1)
+        activeCloudIndex1=Random.Range(0,clouds.Length);
+         clouds[activeCloudIndex].SetActive(true);
+         clouds[activeCloudIndex1].SetActive(true);
 
-            }
+
+    yield return new WaitForSeconds(2);
+    
+   
       
      StartCoroutine(CloudWorkCnahnge());
+
 }
 
 IEnumerator SpawnVelet(){
@@ -92,6 +104,7 @@ IEnumerator SpawnVelet(){
          Healt--;
          stage++;
          StopAllCoroutines();
+         if(stage<3)
          StageAttack(stage);
     }   
     else{

@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.P))
+        GetHit();
         distace=Vector2.Distance(transform.position,GameManager.instance.player.transform.position);
         Vector2 direction =GameManager.instance.player.transform.position-transform.position;
         direction.Normalize();
@@ -54,7 +56,10 @@ public class Enemy : MonoBehaviour
         
             // animasyon girer
             isDead=true;
+            GetComponent<Rigidbody2D>().gravityScale=0;
             GetComponent<Collider2D>().enabled=false;
+            GetComponent<Animator>().SetTrigger("Dead");
+            
         
     }
    
