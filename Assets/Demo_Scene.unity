@@ -738,14 +738,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2954181336601895002, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1797881515, guid: a651bbc080cc9e34985149fddb5afbe1, type: 3}
-    - target: {fileID: 4580596908604737113, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
-      propertyPath: m_camera
-      value: 
-      objectReference: {fileID: 269240985}
     - target: {fileID: 6323719953710832613, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_Name
       value: Player

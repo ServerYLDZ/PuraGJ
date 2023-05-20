@@ -9,9 +9,6 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private bool grappleToAll = false;
     [SerializeField] private int grappableLayerNumber = 9;
 
-    [Header("Main Camera")]
-    public Camera m_camera;
-
     [Header("Transform Refrences:")]
     public Transform gunHolder;
     public Transform gunPivot;
@@ -62,7 +59,7 @@ public class GrapplingGun : MonoBehaviour
 
     private void Update()
     {
-        Mouse_FirePoint_DistanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
+        Mouse_FirePoint_DistanceVector = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
         SetGrappleColor();
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
@@ -76,7 +73,7 @@ public class GrapplingGun : MonoBehaviour
             }
             else
             {
-                RotateGun(m_camera.ScreenToWorldPoint(Input.mousePosition), false);
+                RotateGun(Camera.main.ScreenToWorldPoint(Input.mousePosition), false);
             }
 
             if (launchToPoint && grappleRope.isGrappling)
@@ -97,7 +94,7 @@ public class GrapplingGun : MonoBehaviour
         }
         else
         {
-            RotateGun(m_camera.ScreenToWorldPoint(Input.mousePosition), true);
+            RotateGun(Camera.main.ScreenToWorldPoint(Input.mousePosition), true);
         }
     }
 
