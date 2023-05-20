@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class Rain : MonoBehaviour
 {
-    public int damage=1;
-   public float speed=10;
-    void Start()
-    {
-        
-    }
+    public int damage = 1;
+    public float speed = 10;
+    public bool boosFight = false;
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position=new Vector3(transform.localPosition.x,transform.localPosition.y-speed*Time.deltaTime,0);
+        transform.position = new Vector3(transform.localPosition.x, transform.localPosition.y - speed * Time.deltaTime, 0);
     }
-     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Player"))
-           GameManager.instance.player.GetComponent<PlayerMovement>().ChangeHealt(-damage);   
-          PoolManager.instance.Despawn(gameObject);
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.instance.player.GetComponent<PlayerMovement>().ChangeHealt(-damage);
+            PoolManager.instance.Despawn(gameObject);
+        } 
+        if(!boosFight)
+            PoolManager.instance.Despawn(gameObject);
     }
 }

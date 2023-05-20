@@ -33,7 +33,6 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private float targetDistance = 3;
     [SerializeField] private float targetFrequency = 3;
 
-
     private enum LaunchType
     {
         Transform_Launch,
@@ -47,14 +46,13 @@ public class GrapplingGun : MonoBehaviour
     [HideInInspector] public Vector2 DistanceVector;
     Vector2 Mouse_FirePoint_DistanceVector;
 
-    public Rigidbody2D ballRigidbody;
-
+    public Rigidbody2D playerRigidbody;
 
     private void Start()
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
-        ballRigidbody.gravityScale = 1;
+        playerRigidbody.gravityScale = 1;
     }
 
     private void Update()
@@ -89,7 +87,7 @@ public class GrapplingGun : MonoBehaviour
         {
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
-            ballRigidbody.gravityScale = 1;
+            playerRigidbody.gravityScale = 1;
             transform.parent.transform.parent.GetComponent<PlayerMovement>().grapped = false;
         }
         else
@@ -146,7 +144,6 @@ public class GrapplingGun : MonoBehaviour
 
     public void Grapple()
     {
-
         if (!launchToPoint && !autoCongifureDistance)
         {
             m_springJoint2D.distance = targetDistance;
@@ -168,8 +165,8 @@ public class GrapplingGun : MonoBehaviour
         {
             if (Launch_Type == LaunchType.Transform_Launch)
             {
-                ballRigidbody.gravityScale = 0;
-                ballRigidbody.velocity = Vector2.zero;
+                playerRigidbody.gravityScale = 0;
+                playerRigidbody.velocity = Vector2.zero;
             }
             if (Launch_Type == LaunchType.Physics_Launch)
             {
