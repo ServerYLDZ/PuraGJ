@@ -69,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
         {
             if(transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x < 0)
             {
-                Debug.Log(transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x);
                 GetComponent<SpriteRenderer>().flipX = false;
             }
             else

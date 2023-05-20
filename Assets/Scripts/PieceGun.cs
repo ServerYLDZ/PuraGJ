@@ -40,17 +40,18 @@ public class PieceGun : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
-
+    int bulletNo;
     void FireBullet()
     {
         if (Time.time >= nextFireTime && !transform.parent.transform.parent.GetComponent<PlayerMovement>().grapped)
         {
             nextFireTime = Time.time + fireRate;
 
-            GameObject bullet = PoolManager.instance.Spawn(piecePrefab[Random.Range(0,piecePrefab.Length)].name, firePoint.position, firePoint.rotation,true);
+            GameObject bullet = PoolManager.instance.Spawn(piecePrefab[bulletNo%piecePrefab.Length].name, firePoint.position, firePoint.rotation,true);
             Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
             bulletRigidbody.velocity = firePoint.right * pieceSpeed;
             PoolManager.instance.Despawn(bullet,1);
+            bulletNo++;
         }
     }
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
