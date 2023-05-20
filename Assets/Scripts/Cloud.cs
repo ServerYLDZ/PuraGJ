@@ -25,7 +25,7 @@ public bool canRain=true;
     {
          if(canSpawn ){
             if( canRain){
-                int rand=Random.Range(0,points.Length);
+                int rand=Random.Range(0,points.Length-1);
              GameObject obj=PoolManager.instance.Spawn("Rain",true);
              obj.transform.position=points[rand].position;
              if(isBossScene){

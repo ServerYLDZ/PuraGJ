@@ -738,26 +738,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 727792378, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
-      propertyPath: piecePrefab.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 727792378, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
-      propertyPath: piecePrefab.Array.data[0]
-      value: 
-      objectReference: {fileID: 3014697714769838510, guid: e8deaf0e0444d9f4184e13e2766a7178, type: 3}
-    - target: {fileID: 727792378, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
-      propertyPath: piecePrefab.Array.data[1]
-      value: 
-      objectReference: {fileID: 3014697714769838510, guid: d0200dab8ba1211469f56ecf529bc30d, type: 3}
-    - target: {fileID: 727792378, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
-      propertyPath: piecePrefab.Array.data[2]
-      value: 
-      objectReference: {fileID: 3014697714769838510, guid: 837a4f176a0e16e4cbdffa8b853240ac, type: 3}
-    - target: {fileID: 727792378, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
-      propertyPath: piecePrefab.Array.data[3]
-      value: 
-      objectReference: {fileID: 3014697714769838510, guid: 608218efb25e3f749a5420167e9fe3a9, type: 3}
     - target: {fileID: 6323719953710832613, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_Name
       value: Player
@@ -813,10 +793,6 @@ PrefabInstance:
     - target: {fileID: 8413529789942519730, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9043920546160527475, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
-      propertyPath: flyable
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}

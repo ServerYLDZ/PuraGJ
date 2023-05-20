@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 3014697714769838507}
   - component: {fileID: 3014697714769838504}
   - component: {fileID: 3014697714769838505}
-  - component: {fileID: 5855239818116168627}
   m_Layer: 0
-  m_Name: Piece 0
+  m_Name: Piece Heal
   m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,15 +123,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &5855239818116168627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3014697714769838510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d074af35336034f8535b6032a18ba3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

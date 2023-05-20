@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 604841925641820418}
   m_Layer: 0
   m_Name: Velet
-  m_TagString: Untagged
+  m_TagString: Velet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

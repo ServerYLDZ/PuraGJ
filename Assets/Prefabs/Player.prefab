@@ -247,7 +247,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arm: {fileID: 1934463915}
-  piecePrefab: {fileID: 3014697714769838510, guid: e8deaf0e0444d9f4184e13e2766a7178, type: 3}
+  piecePrefab:
+  - {fileID: 3014697714769838510, guid: e8deaf0e0444d9f4184e13e2766a7178, type: 3}
+  - {fileID: 3014697714769838510, guid: d0200dab8ba1211469f56ecf529bc30d, type: 3}
+  - {fileID: 3014697714769838510, guid: 837a4f176a0e16e4cbdffa8b853240ac, type: 3}
+  - {fileID: 3014697714769838510, guid: 608218efb25e3f749a5420167e9fe3a9, type: 3}
   pieceSpeed: 10
   fireRate: 0.2
   nextFireTime: 0
@@ -1001,13 +1005,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8413529789942519730}
   - component: {fileID: 9043920546160527475}
+  - component: {fileID: 4584673248782796323}
   - component: {fileID: 2655505060201611074}
   - component: {fileID: 2954181336601895002}
   - component: {fileID: 8942925490989933264}
   - component: {fileID: 6819288938887847953}
   - component: {fileID: 1891740237}
   m_Layer: 6
-  m_Name: Demo_Player
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1048,6 +1053,22 @@ MonoBehaviour:
   m_jumpForce: 7.5
   m_slider: {fileID: 353516216247365977}
   grapped: 0
+  flyable: 1
+--- !u!114 &4584673248782796323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe13ea5891d67a44a78fdf1ff40a76f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healPrefab: {fileID: 3014697714769838510, guid: e8deaf0e0444d9f4184e13e2766a7178, type: 3}
+  speed: 5
+  gravity: 9.8
 --- !u!95 &2655505060201611074
 Animator:
   serializedVersion: 4
