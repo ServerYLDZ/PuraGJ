@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1700006183768690897}
   - component: {fileID: 604841925641820418}
   m_Layer: 0
-  m_Name: Enemy 1
+  m_Name: Velet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   folowDis: 15
   attackDis: 1.5
   speed: 1
+  canAttack: 1
   attackTime: 2
 --- !u!61 &1700006183768690896
 BoxCollider2D:

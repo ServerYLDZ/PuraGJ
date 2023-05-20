@@ -126,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
             m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
         }
 
-        if (Input.GetKey(KeyCode.Space) && canFly && Time.time - pressTime <= 1)
+        if (Input.GetKey(KeyCode.W) && canFly && Time.time - pressTime <= 1)
         {
             Fly();
         }

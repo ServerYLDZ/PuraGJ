@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public float folowDis=6;
     public float attackDis=2;
     public float speed=5;
-    bool canAttack=true;
+    public bool canAttack=true;
     public float attackTime=2;
     private bool isDead=false;
     void Start()
@@ -40,6 +40,7 @@ public class Enemy : MonoBehaviour
         
     }
     public void Attack () {
+        Debug.Log("hiii");
         GameManager.instance.player.GetComponent<PlayerMovement>().ChangeHealt(-damage);
         canAttack=false;
         StartCoroutine(ResetAttack());
@@ -53,6 +54,7 @@ public class Enemy : MonoBehaviour
         
             // animasyon girer
             isDead=true;
+            GetComponent<Collider2D>().enabled=false;
         
     }
    

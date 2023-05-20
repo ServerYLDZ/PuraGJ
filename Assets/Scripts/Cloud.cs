@@ -10,15 +10,20 @@ public class Cloud : MonoBehaviour
       public GameObject rainPrefab;
      public Transform target;
 public bool canSpawn=true;
+public bool canMove=true;
+
+public bool canRain=true;
+
     void Start()
     {
+        if(canMove)
         transform.DOMoveX(target.position.x,5,false).SetLoops(-1,LoopType.Yoyo);
     }
 
     // Update is called once per frame
     void Update()
     {
-         if(canSpawn){
+         if(canSpawn && canRain){
             int rand=Random.Range(0,points.Length);
              GameObject obj=PoolManager.instance.Spawn("Rain",true);
              obj.transform.position=points[rand].position;
