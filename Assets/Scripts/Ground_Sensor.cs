@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Ground_Sensor : MonoBehaviour {
 
-    private int m_ColCount = 0;
+    [SerializeField]private int m_ColCount = 0;
 
-    private float m_DisableTimer;
+    [SerializeField]private float m_DisableTimer;
 
     private void OnEnable()
     {

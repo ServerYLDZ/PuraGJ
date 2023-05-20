@@ -65,6 +65,18 @@ public class PlayerMovement : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
+        else
+        {
+            if(transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x < 0)
+            {
+                Debug.Log(transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x);
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+        }
 
         m_animator.SetFloat("AirSpeedY", m_body2d.velocity.y);
 
@@ -119,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
         {
             m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
         }
+
         if (Input.GetKey(KeyCode.Space) && canFly && Time.time - pressTime <= 1)
         {
             Fly();

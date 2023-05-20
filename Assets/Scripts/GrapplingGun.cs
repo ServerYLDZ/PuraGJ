@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class GrapplingGun : MonoBehaviour
 {
@@ -62,7 +63,7 @@ public class GrapplingGun : MonoBehaviour
     private void Update()
     {
         Mouse_FirePoint_DistanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
-
+        SetGrappleColor();
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             SetGrapplePoint();
@@ -127,6 +128,22 @@ public class GrapplingGun : MonoBehaviour
                 grappleRope.enabled = true;
                 transform.parent.transform.parent.GetComponent<PlayerMovement>().grapped = true;
             }
+        }
+    }
+
+    void SetGrappleColor()
+    {
+        if (Physics2D.Raycast(firePoint.position, Mouse_FirePoint_DistanceVector.normalized, maxHookDistance))
+        {
+            RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, Mouse_FirePoint_DistanceVector.normalized);
+            if ((_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll) && ((Vector2.Distance(_hit.point, firePoint.position) <= maxDistance) || !hasMaxDistance))
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+            }
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 
