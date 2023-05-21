@@ -1825,16 +1825,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987790841}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.59, y: 9.11, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1325861807}
   - {fileID: 1154688476}
   - {fileID: 1405014169}
-  m_Father: {fileID: 1333496020}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &995651341
 GameObject:
@@ -1959,7 +1959,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.75, y: -2.4, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 987790842}
   m_RootOrder: 1
@@ -1995,7 +1995,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.3, y: -2.14, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 987790842}
   m_RootOrder: 0
@@ -2083,9 +2083,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1982969859}
-  - {fileID: 987790842}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1333496021
 MonoBehaviour:
@@ -2112,10 +2111,7 @@ MonoBehaviour:
   - {fileID: 596035365}
   veletSpawnTime: 3
   rainTime: 3
-  spawnObjects:
-  - {fileID: 2624613588027934133, guid: 35d45e837e2c16742bb6aeac936fb9d8, type: 3}
-  - {fileID: 2624613588027934133, guid: 35d45e837e2c16742bb6aeac936fb9d8, type: 3}
-  - {fileID: 2624613588027934133, guid: 35d45e837e2c16742bb6aeac936fb9d8, type: 3}
+  spawnObjects: {fileID: 2624613588027934133, guid: 35d45e837e2c16742bb6aeac936fb9d8, type: 3}
   spawnTransform:
   - {fileID: 1325861807}
   - {fileID: 1154688476}
@@ -2150,7 +2146,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.15, y: -2.4, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 987790842}
   m_RootOrder: 2

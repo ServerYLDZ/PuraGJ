@@ -12,7 +12,7 @@ public class Boss : MonoBehaviour
   public float veletSpawnTime=3;
     public float rainTime=3;
 
-  public GameObject  [] spawnObjects; 
+  public GameObject   spawnObjects; 
   public Transform  []spawnTransform;
   public int spawnCount;
   public GameObject cuurentObj;
@@ -24,7 +24,8 @@ public class Boss : MonoBehaviour
 private void Update() {
   if(!cuurentObj){
     int index=Random.Range(0,spawnTransform.Length);
-    cuurentObj=Instantiate(spawnObjects[stage],spawnTransform[index]);
+    Debug.Log(index);
+    cuurentObj=Instantiate(spawnObjects,spawnTransform[index].position,Quaternion.identity);
     spawnCount++;
     if(spawnCount>=4){
       GetDamage();
