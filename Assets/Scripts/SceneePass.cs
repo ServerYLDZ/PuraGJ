@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SceneePass : MonoBehaviour
 {   
@@ -9,6 +10,8 @@ public class SceneePass : MonoBehaviour
   [SerializeField] Sprite [] images;
  [SerializeField] private int imageIndex;
  
+ public bool sahneGecis=false;
+  public string scene;
  private void Start() {
     image.sprite=images[imageIndex];
  }
@@ -19,6 +22,9 @@ public class SceneePass : MonoBehaviour
             image.sprite=images[imageIndex];
         }
         else{
+          if(sahneGecis){
+                SceneManager.LoadScene(scene);
+          }
             enabled=false;
             image.enabled=false;
         }
