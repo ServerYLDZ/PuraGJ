@@ -6,6 +6,7 @@ public class Boss : MonoBehaviour
 {
   public int Healt =3;
   public int stage=0;
+  public GameObject []healtbars;
   public GameObject birdSpawner;
   public GameObject [] clouds;
   public Transform [] spawnPointVelet;
@@ -22,6 +23,8 @@ public class Boss : MonoBehaviour
  public int activeCloudIndex1=0;
 
 private void Update() {
+  if(Input.GetKeyDown(KeyCode.L))
+  GetDamage();
   if(!cuurentObj){
     int index=Random.Range(0,spawnTransform.Length);
     Debug.Log(index);
@@ -113,6 +116,7 @@ IEnumerator SpawnVelet(){
    
     if(Healt>0){
          Healt--;
+         healtbars[Healt].SetActive(false);
          stage++;
          StopAllCoroutines();
          if(stage<3)
