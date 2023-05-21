@@ -9,8 +9,8 @@ public class Cloud : MonoBehaviour
     public float spawnTime = .5f;
     public GameObject rainPrefab;
     public Transform target;
-    public bool canSpawn = true;
     public bool canMove = true;
+    public bool boss=false;
     public bool canRain = true;
 
     void Start()
@@ -25,9 +25,14 @@ public class Cloud : MonoBehaviour
     IEnumerator LifeCircle()
     {
         yield return new WaitForSeconds(spawnTime);
-        int rand = Random.Range(0, points.Length - 1);
-        GameObject obj = PoolManager.instance.Spawn("Rain", points[rand].position, Quaternion.identity, true);
-        PoolManager.instance.Despawn(obj,.5f);
+        if (canRain)
+        {
+            int rand = Random.Range(0, points.Length - 1);
+            GameObject obj = PoolManager.instance.Spawn("Rain", points[rand].position, Quaternion.identity, true);
+            if(boss)
+                obj.GetComponent<Rain>().boosFight = true;
+            PoolManager.instance.Despawn(obj, .5f);
+        }
         StartCoroutine(LifeCircle());
     }
 }

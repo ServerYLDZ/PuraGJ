@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private float flySpeed = 16;
     public bool grapped;
     public bool flyable;
-
+    public GameObject lose;
     void Start()
     {
         m_animator = GetComponent<Animator>();
@@ -157,11 +158,18 @@ public class PlayerMovement : MonoBehaviour
         else if( m_healt+x <= 0) 
         {
             m_healt = 0;
-            // ölme fonskiyonu buraya gelecek
+            lose.SetActive(true);
+            Time.timeScale = 0;
         }
         else
         {
             m_healt += x;
         }
+    }
+
+    public void TekrarDene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 }

@@ -14,6 +14,6 @@ public class Rain : MonoBehaviour
             GameManager.instance.player.GetComponent<PlayerMovement>().ChangeHealt(-damage);
         }
         if(!boosFight) 
-        PoolManager.instance.Despawn(gameObject);
+            PoolManager.instance.Despawn(gameObject);
     }
 }
