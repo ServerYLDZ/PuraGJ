@@ -56,6 +56,7 @@ public class Enemy : MonoBehaviour
     }
     public void GetHit()
     {
+        Debug.Log("öldüm");
         isDead = true;
         GetComponent<Rigidbody2D>().gravityScale = 0;
         GetComponent<Collider2D>().enabled = false;

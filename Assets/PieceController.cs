@@ -10,10 +10,12 @@ public class PieceController : MonoBehaviour
         {
             Debug.Log("velettt");
             collision.GetComponent<Enemy>().GetHit();
+            PoolManager.instance.Despawn(gameObject);
         }
         if(collision.tag == "Bird")
         {
             collision.GetComponent<BirdEnemy>().GetHit();
+            PoolManager.instance.Despawn(gameObject);
         }
     }
 }

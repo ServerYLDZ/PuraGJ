@@ -52,6 +52,7 @@ public class PieceGun : MonoBehaviour
             bulletRigidbody.velocity = firePoint.right * pieceSpeed;
             PoolManager.instance.Despawn(bullet,1);
             bulletNo++;
+            transform.root.GetComponent<PlayerMovement>().ChangeHealt(-5);
         }
     }
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)

@@ -99,6 +99,7 @@ public class GrapplingGun : MonoBehaviour
             m_springJoint2D.enabled = false;
             playerRigidbody.gravityScale = 1;
             transform.parent.transform.parent.GetComponent<PlayerMovement>().grapped = false;
+            if(hookTop != null)
             PoolManager.instance.Despawn(hookTop);
             arm.SetActive(false);
         }

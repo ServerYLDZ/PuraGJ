@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         //Fly Start
         if (Input.GetKeyDown(KeyCode.W) && m_grounded && flyable)
         {
-            
+            m_animator.SetTrigger("Fly");
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
            
@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
             m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
         }
 
-        if (Input.GetKey(KeyCode.W) && canFly && Time.time - pressTime <= 1)
+        if (Input.GetKey(KeyCode.W) && canFly && Time.time - pressTime <= 2)
         {
                 m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
