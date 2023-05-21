@@ -5,21 +5,15 @@ using UnityEngine;
 public class Rain : MonoBehaviour
 {
     public int damage = 1;
-    public float speed = 10;
     public bool boosFight = false;
 
-    void Update()
-    {
-        transform.position = new Vector3(transform.localPosition.x, transform.localPosition.y - speed * Time.deltaTime, 0);
-    }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             GameManager.instance.player.GetComponent<PlayerMovement>().ChangeHealt(-damage);
-            PoolManager.instance.Despawn(gameObject);
-        } 
-        if(!boosFight)
-            PoolManager.instance.Despawn(gameObject);
+        }
+        if(!boosFight) 
+        PoolManager.instance.Despawn(gameObject);
     }
 }

@@ -16,10 +16,9 @@ public bool canSpawn=true;
   target= Physics2D.OverlapBox(transform.position,new Vector2(spawnRange,spawnRange),90,mask);
     if(target){
         if(canSpawn){
-           float x= Random.Range(transform.position.x-spawnRange,+transform.position.x+spawnRange);
-            float y= Random.Range(transform.position.y+5,transform.position.y+10);
-            GameObject obj=PoolManager.instance.Spawn("Bird",true);
-            obj.transform.position=new Vector3(x,y,0);
+           float x= Random.Range(transform.position.x-spawnRange/2,+transform.position.x+spawnRange/2);
+            float y= Random.Range(transform.position.y+ (spawnRange/4),transform.position.y+10+ (spawnRange / 4));
+            GameObject obj=PoolManager.instance.Spawn("Bird",new Vector3(x,y,0),Quaternion.identity,true);
            // GameObject obj=Instantiate(birdPrefab,new Vector3(x,y,0),Quaternion.identity);
             canSpawn=false;
             StartCoroutine(ResetSpawn());
